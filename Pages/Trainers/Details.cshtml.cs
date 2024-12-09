@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Members
+namespace Proiect_Medii.Pages.Trainers
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Proiect_Medii.Pages.Members
             _context = context;
         }
 
-        public Member Member { get; set; } = default!;
+        public Trainer Trainer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,17 +28,14 @@ namespace Proiect_Medii.Pages.Members
                 return NotFound();
             }
 
-            var member = await _context.Member
-                 .Include(m => m.Membership)
-                 .Include(m=>m.Trainer)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (member == null)
+            var trainer = await _context.Trainer.FirstOrDefaultAsync(m => m.ID == id);
+            if (trainer == null)
             {
                 return NotFound();
             }
             else
             {
-                Member = member;
+                Trainer = trainer;
             }
             return Page();
         }

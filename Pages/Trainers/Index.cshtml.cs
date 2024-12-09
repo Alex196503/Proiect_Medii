@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Members
+namespace Proiect_Medii.Pages.Trainers
 {
     public class IndexModel : PageModel
     {
@@ -19,14 +19,11 @@ namespace Proiect_Medii.Pages.Members
             _context = context;
         }
 
-        public IList<Member> Member { get;set; } = default!;
+        public IList<Trainer> Trainer { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Member = await _context.Member
-                .Include(m=>m.Membership)
-                .Include(m=>m.Trainer)
-                .ToListAsync();
+            Trainer = await _context.Trainer.ToListAsync();
         }
     }
 }

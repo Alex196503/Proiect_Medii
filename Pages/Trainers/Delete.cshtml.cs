@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Members
+namespace Proiect_Medii.Pages.Trainers
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Proiect_Medii.Pages.Members
         }
 
         [BindProperty]
-        public Member Member { get; set; } = default!;
+        public Trainer Trainer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,18 +29,15 @@ namespace Proiect_Medii.Pages.Members
                 return NotFound();
             }
 
-            var member = await _context.Member
-                .Include(m=>m.Membership)
-                .Include(m=>m.Trainer)
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var trainer = await _context.Trainer.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (member == null)
+            if (trainer == null)
             {
                 return NotFound();
             }
             else
             {
-                Member = member;
+                Trainer = trainer;
             }
             return Page();
         }
@@ -52,11 +49,11 @@ namespace Proiect_Medii.Pages.Members
                 return NotFound();
             }
 
-            var member = await _context.Member.FindAsync(id);
-            if (member != null)
+            var trainer = await _context.Trainer.FindAsync(id);
+            if (trainer != null)
             {
-                Member = member;
-                _context.Member.Remove(Member);
+                Trainer = trainer;
+                _context.Trainer.Remove(Trainer);
                 await _context.SaveChangesAsync();
             }
 

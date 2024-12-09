@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Members
+namespace Proiect_Medii.Pages.Trainers
 {
     public class CreateModel : PageModel
     {
@@ -22,15 +21,11 @@ namespace Proiect_Medii.Pages.Members
 
         public IActionResult OnGet()
         {
-            ViewData["MembershipID"] = new SelectList(_context.Set<Membership>(), "ID",
-            "MembershipName");
-            ViewData["TrainerID"] = new SelectList(_context.Set<Trainer>(), "ID",
-            "Name");
             return Page();
         }
 
         [BindProperty]
-        public Member Member { get; set; } = default!;
+        public Trainer Trainer { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -40,7 +35,7 @@ namespace Proiect_Medii.Pages.Members
                 return Page();
             }
 
-            _context.Member.Add(Member);
+            _context.Trainer.Add(Trainer);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

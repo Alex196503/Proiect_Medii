@@ -16,5 +16,6 @@ namespace Proiect_Medii.Data
 
         public DbSet<Proiect_Medii.Models.Member> Member { get; set; } = default!;
         public DbSet<Proiect_Medii.Models.Membership> Membership { get; set; } = default!;
+        public DbSet<Proiect_Medii.Models.Trainer> Trainer { get; set; } = default!;
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Members
+namespace Proiect_Medii.Pages.Trainers
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Proiect_Medii.Pages.Members
         }
 
         [BindProperty]
-        public Member Member { get; set; } = default!;
+        public Trainer Trainer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,16 +30,12 @@ namespace Proiect_Medii.Pages.Members
                 return NotFound();
             }
 
-            var member =  await _context.Member.FirstOrDefaultAsync(m => m.ID == id);
-            if (member == null)
+            var trainer =  await _context.Trainer.FirstOrDefaultAsync(m => m.ID == id);
+            if (trainer == null)
             {
                 return NotFound();
             }
-            Member = member;
-            ViewData["MembershipID"] = new SelectList(_context.Set<Membership>(), "ID",
-           "MembershipName");
-            ViewData["TrainerID"] = new SelectList(_context.Set<Trainer>(), "ID",
-            "Name");
+            Trainer = trainer;
             return Page();
         }
 
@@ -52,7 +48,7 @@ namespace Proiect_Medii.Pages.Members
                 return Page();
             }
 
-            _context.Attach(Member).State = EntityState.Modified;
+            _context.Attach(Trainer).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +56,7 @@ namespace Proiect_Medii.Pages.Members
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MemberExists(Member.ID))
+                if (!TrainerExists(Trainer.ID))
                 {
                     return NotFound();
                 }
@@ -73,9 +69,9 @@ namespace Proiect_Medii.Pages.Members
             return RedirectToPage("./Index");
         }
 
-        private bool MemberExists(int id)
+        private bool TrainerExists(int id)
         {
-            return _context.Member.Any(e => e.ID == id);
+            return _context.Trainer.Any(e => e.ID == id);
         }
     }
 }
