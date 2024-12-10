@@ -22,6 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Trainer[0].Specializare)
             </th>
+            
             <th>
                 Actiuni posibile
             </th>
@@ -40,6 +41,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Specializare)
             </td>
+            
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

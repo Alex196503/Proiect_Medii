@@ -8,6 +8,6 @@
         public string PhoneNumber { get; set; }
         public string Specializare { get; set; }
         public ICollection<Member>? Members { get; set; }
-        
+        public ICollection<Review>? Reviews { get; set; }
     }
 }
