@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect_Medii.Data;
 
@@ -11,9 +12,11 @@ using Proiect_Medii.Data;
 namespace Proiect_Medii.Migrations
 {
     [DbContext(typeof(Proiect_MediiContext))]
-    partial class Proiect_MediiContextModelSnapshot : ModelSnapshot
+    [Migration("20241211145705_asfgad")]
+    partial class asfgad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,30 +94,6 @@ namespace Proiect_Medii.Migrations
                     b.ToTable("Membership");
                 });
 
-            modelBuilder.Entity("Proiect_Medii.Models.Reservation", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<DateTime>("Data_Rezervarii")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Durata")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MemberID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("Reservation");
-                });
-
             modelBuilder.Entity("Proiect_Medii.Models.Review", b =>
                 {
                     b.Property<int>("ID")
@@ -182,15 +161,6 @@ namespace Proiect_Medii.Migrations
                     b.Navigation("Trainer");
                 });
 
-            modelBuilder.Entity("Proiect_Medii.Models.Reservation", b =>
-                {
-                    b.HasOne("Proiect_Medii.Models.Member", "Member")
-                        .WithMany("Reservations")
-                        .HasForeignKey("MemberID");
-
-                    b.Navigation("Member");
-                });
-
             modelBuilder.Entity("Proiect_Medii.Models.Review", b =>
                 {
                     b.HasOne("Proiect_Medii.Models.Trainer", "Trainer")
@@ -200,11 +170,6 @@ namespace Proiect_Medii.Migrations
                         .IsRequired();
 
                     b.Navigation("Trainer");
-                });
-
-            modelBuilder.Entity("Proiect_Medii.Models.Member", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Proiect_Medii.Models.Membership", b =>

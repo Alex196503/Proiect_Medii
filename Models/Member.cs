@@ -26,5 +26,6 @@ namespace Proiect_Medii.Models
         public Membership? Membership { get; set; }
         public int? TrainerID { get; set; }
         public Trainer? Trainer{get;set;}
+        public ICollection<Reservation>?Reservations { get; set; }
     }
 }

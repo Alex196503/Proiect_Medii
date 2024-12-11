@@ -18,5 +18,6 @@ namespace Proiect_Medii.Data
         public DbSet<Proiect_Medii.Models.Membership> Membership { get; set; } = default!;
         public DbSet<Proiect_Medii.Models.Trainer> Trainer { get; set; } = default!;
         public DbSet<Proiect_Medii.Models.Review> Review { get; set; } = default!;
+        public DbSet<Proiect_Medii.Models.Reservation> Reservation { get; set; } = default!;
     }
 }
