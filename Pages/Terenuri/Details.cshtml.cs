@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Reservations
+namespace Proiect_Medii.Pages.Terenuri
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Proiect_Medii.Pages.Reservations
             _context = context;
         }
 
-        public Reservation Reservation { get; set; } = default!;
+        public Teren Teren { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,17 +28,14 @@ namespace Proiect_Medii.Pages.Reservations
                 return NotFound();
             }
 
-            var reservation = await _context.Reservation
-                .Include(r=>r.Member)
-                .Include(r=>r.Teren)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (reservation == null)
+            var teren = await _context.Teren.FirstOrDefaultAsync(m => m.ID == id);
+            if (teren == null)
             {
                 return NotFound();
             }
             else
             {
-                Reservation = reservation;
+                Teren = teren;
             }
             return Page();
         }

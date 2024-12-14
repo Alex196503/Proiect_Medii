@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Reservations
+namespace Proiect_Medii.Pages.Terenuri
 {
     public class CreateModel : PageModel
     {
@@ -22,13 +21,11 @@ namespace Proiect_Medii.Pages.Reservations
 
         public IActionResult OnGet()
         {
-           ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "ID", "FirstName");
-           ViewData["TerenID"] = new SelectList(_context.Set<Teren>(), "ID","Tip");
             return Page();
         }
 
         [BindProperty]
-        public Reservation Reservation { get; set; } = default!;
+        public Teren Teren { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +35,7 @@ namespace Proiect_Medii.Pages.Reservations
                 return Page();
             }
 
-            _context.Reservation.Add(Reservation);
+            _context.Teren.Add(Teren);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

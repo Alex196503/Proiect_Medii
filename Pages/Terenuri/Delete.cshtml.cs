@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Reservations
+namespace Proiect_Medii.Pages.Terenuri
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Proiect_Medii.Pages.Reservations
         }
 
         [BindProperty]
-        public Reservation Reservation { get; set; } = default!;
+        public Teren Teren { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,18 +29,15 @@ namespace Proiect_Medii.Pages.Reservations
                 return NotFound();
             }
 
-            var reservation = await _context.Reservation
-                .Include(r=>r.Member)
-                .Include(r=>r.Teren)
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var teren = await _context.Teren.FirstOrDefaultAsync(m => m.ID == id);
 
-                if (reservation == null)
+            if (teren == null)
             {
                 return NotFound();
             }
             else
             {
-                Reservation = reservation;
+                Teren = teren;
             }
             return Page();
         }
@@ -52,11 +49,11 @@ namespace Proiect_Medii.Pages.Reservations
                 return NotFound();
             }
 
-            var reservation = await _context.Reservation.FindAsync(id);
-            if (reservation != null)
+            var teren = await _context.Teren.FindAsync(id);
+            if (teren != null)
             {
-                Reservation = reservation;
-                _context.Reservation.Remove(Reservation);
+                Teren = teren;
+                _context.Teren.Remove(Teren);
                 await _context.SaveChangesAsync();
             }
 

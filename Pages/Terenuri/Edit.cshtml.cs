@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Reservations
+namespace Proiect_Medii.Pages.Terenuri
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Proiect_Medii.Pages.Reservations
         }
 
         [BindProperty]
-        public Reservation Reservation { get; set; } = default!;
+        public Teren Teren { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,12 @@ namespace Proiect_Medii.Pages.Reservations
                 return NotFound();
             }
 
-            var reservation =  await _context.Reservation.FirstOrDefaultAsync(m => m.ID == id);
-            if (reservation == null)
+            var teren =  await _context.Teren.FirstOrDefaultAsync(m => m.ID == id);
+            if (teren == null)
             {
                 return NotFound();
             }
-            Reservation = reservation;
-           ViewData["MemberID"] = new SelectList(_context.Set<Member>(), "ID", "FirstName");
-           ViewData["TerenID"] = new SelectList(_context.Set<Teren>(), "ID", "Tip");
+            Teren = teren;
             return Page();
         }
 
@@ -50,7 +48,7 @@ namespace Proiect_Medii.Pages.Reservations
                 return Page();
             }
 
-            _context.Attach(Reservation).State = EntityState.Modified;
+            _context.Attach(Teren).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +56,7 @@ namespace Proiect_Medii.Pages.Reservations
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ReservationExists(Reservation.ID))
+                if (!TerenExists(Teren.ID))
                 {
                     return NotFound();
                 }
@@ -71,9 +69,9 @@ namespace Proiect_Medii.Pages.Reservations
             return RedirectToPage("./Index");
         }
 
-        private bool ReservationExists(int id)
+        private bool TerenExists(int id)
         {
-            return _context.Reservation.Any(e => e.ID == id);
+            return _context.Teren.Any(e => e.ID == id);
         }
     }
 }

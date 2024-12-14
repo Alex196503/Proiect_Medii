@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Medii.Data;
 using Proiect_Medii.Models;
 
-namespace Proiect_Medii.Pages.Reservations
+namespace Proiect_Medii.Pages.Terenuri
 {
     public class IndexModel : PageModel
     {
@@ -19,14 +19,11 @@ namespace Proiect_Medii.Pages.Reservations
             _context = context;
         }
 
-        public IList<Reservation> Reservation { get;set; } = default!;
+        public IList<Teren> Teren { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Reservation = await _context.Reservation
-                .Include(r => r.Member)
-                .Include(r=>r.Teren)
-                .ToListAsync();
+            Teren = await _context.Teren.ToListAsync();
         }
     }
 }

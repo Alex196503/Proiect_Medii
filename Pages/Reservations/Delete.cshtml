@@ -19,11 +19,29 @@
             @Html.DisplayFor(model => model.Reservation.Data_Rezervarii)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Reservation.Member)
+        @Html.DisplayNameFor(model=>model.Reservation.Durata)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Reservation.Member.ID)
+        @Html.DisplayFor(model=>model.Reservation.Durata)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Reservation.Member.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model=>model.Reservation.Member.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Reservation.Member.LastName)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model=>model.Reservation.Member.LastName)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.Teren.Tip)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.Teren.Tip)
+        </dt>
     </dl>
     
     <form method="post">
