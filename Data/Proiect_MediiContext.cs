@@ -20,5 +20,27 @@ namespace Proiect_Medii.Data
         public DbSet<Proiect_Medii.Models.Review> Review { get; set; } = default!;
         public DbSet<Proiect_Medii.Models.Reservation> Reservation { get; set; } = default!;
         public DbSet<Proiect_Medii.Models.Teren> Teren { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Teren)
+                .WithMany(t => t.Reservations)
+                .HasForeignKey(r => r.TerenID)
+                .OnDelete(DeleteBehavior.Cascade);
+     
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Member>()
+                .HasOne(m => m.Trainer)
+                .WithMany(t => t.Members)
+                .HasForeignKey(m => m.TrainerID)
+                .OnDelete(DeleteBehavior.Cascade); // Adăugăm ștergerea în cascadă
+        }
+
     }
+
+
 }
+

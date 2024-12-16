@@ -9,10 +9,15 @@ namespace Proiect_Medii.Models
             get; set;
         }
         [Display(Name = "Last Name")]
+        [RegularExpression(@"^[A-Z]+[a-z\s]*$",ErrorMessage ="Numele trebuie sa inceapa cu majuscula")]
+        [StringLength(50, MinimumLength = 3)]
 
         public string LastName { get; set; }
         [Display(Name = "First Name")]
+        [RegularExpression(@"^[A-Z]+[a-z\s]*$",ErrorMessage ="Prenumele trebuie sa inceapa cu majuscula")]
+        [StringLength(50, MinimumLength = 3)]
         public string FirstName { get; set; }
+        [StringLength(50, MinimumLength = 10)]
         public string Email { get; set; }
         [StringLength(100, ErrorMessage = "Adresa trebuie sa contina maximum 80 de caractere!")]
         [Display(Name = "Address")]

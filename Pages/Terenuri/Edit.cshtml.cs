@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Proiect_Medii.Pages.Terenuri
                 return NotFound();
             }
 
-            var teren =  await _context.Teren.FirstOrDefaultAsync(m => m.ID == id);
+            var teren = await _context.Teren.FirstOrDefaultAsync(m => m.ID == id);
             if (teren == null)
             {
                 return NotFound();
